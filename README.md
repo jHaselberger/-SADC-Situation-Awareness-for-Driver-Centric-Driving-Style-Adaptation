@@ -28,7 +28,7 @@ dependent statistics can learn iteratively from continuous data
 streams by design. Overall, our experiments show that important information for driving behavior prediction is contained
 within the visual feature encoder.
 
-The dataset is publicly available at [huggingface.co/datasets/jHaselberger/SADC-Situation-Awareness-for-Driver-Centric-Driving-Style-Adaptation](huggingface.co/datasets/jHaselberger/SADC-Situation-Awareness-for-Driver-Centric-Driving-Style-Adaptation).
+The dataset is publicly available at [https://huggingface.co/datasets/jHaselberger/SADC-Situation-Awareness-for-Driver-Centric-Driving-Style-Adaptation](https://huggingface.co/datasets/jHaselberger/SADC-Situation-Awareness-for-Driver-Centric-Driving-Style-Adaptation).
 
 ![Overview of the methodology](assets/sadc_method.png)
 
