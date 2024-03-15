@@ -1,0 +1,47 @@
+encoder_name: resnext50_imagenet1k_v2_rural_only_r2
+head_name: linear
+seed: 42
+dataset:
+  image_data_root_dir: "/root/sadc/data/images"
+  pretrain_train_driving_data_path: "/root/sadc/data/datasets/dataset_pretrain_train.pkl"
+  pretrain_train_representation_file_path: "/root/sadc/results/resnext50_imagenet1k_v2/encoder/representations/pretrain_train/representations.npz"
+  pretrain_val_driving_data_path: "/root/sadc/data/datasets/dataset_pretrain_val.pkl"
+  pretrain_val_representation_file_path: "/root/sadc/results/resnext50_imagenet1k_v2/encoder/representations/pretrain_val/representations.npz"
+  val_train_driving_data_path: "/root/sadc/data/datasets/dataset_val_train.pkl"
+  val_train_representation_file_path: "/root/sadc/results/resnext50_imagenet1k_v2/encoder/representations/val_train/representations.npz"
+  val_val_driving_data_path: "/root/sadc/data/datasets/dataset_val_val.pkl"
+  val_val_representation_file_path: "/root/sadc/results/resnext50_imagenet1k_v2/encoder/representations/val_val/representations.npz"
+  representation_dim: 2048
+
+filtering:
+  kpi_name: "Dist_To_Center_Lane"
+  filter_nans: true
+  use_only_rural_for_training: true
+  target_alias: null
+  max_d2cl: 1.5
+  filter_stationary: False
+  aliases: ["001","002","003","004","005"]
+
+model:
+  model_type: "Linear" # One of ['Linear', 'MLP']
+  hidden_units: []
+
+training:
+  epochs: 500
+  batch_size: 256 # per gpu
+  lr: 0.0001
+  scale_lr: false
+  use_cosine_annealing_lr: true
+  optimizer: "AdamW" # One of ['AdamW', 'Adam', 'SGD']
+
+validation:
+  checkpoint_name: "best.ckpt"
+
+logging:
+  use_wandb: false
+  wandb_project_name: "sadc"
+  wandb_save_dir: "/root/sadc"
+  wandb_api_key: ""
+
+export:
+  output_dir: "/root/sadc/results"

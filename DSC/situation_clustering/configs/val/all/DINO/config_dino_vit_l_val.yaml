@@ -1,0 +1,52 @@
+datasets:
+  use_val_train_for_training: false
+  training:
+    representations: "/root/sadc/results/DINOv2/representations_pretrain/dinov2_vitl14_reg4/sadc_representations_dinov2.npy.npz"
+    driving_dataset: "/root/sadc/data/datasets/dataset_pretrain.pkl"
+  validation_train:
+    representations: "/root/sadc/results/DINOv2/representations_val_train/dinov2_vitl14_reg4/sadc_representations_dinov2.npy.npz"
+    driving_dataset: "/root/sadc/data/datasets/dataset_val_train.pkl"
+  validation_validation:
+    representations: "/root/sadc/results/DINOv2/representations_val_val/dinov2_vitl14_reg4/sadc_representations_dinov2.npy.npz"
+    driving_dataset: "/root/sadc/data/datasets/dataset_val_val.pkl"
+  
+
+export:
+  target_dir: "/root/sadc/results/DSC"
+  name_prefix: "sadc_clustering_dino_l_val_all"
+
+filtering:
+  use_only_rural_for_training: false
+  max_d2cl: 1.5
+  drop_nan: false
+
+clustering:
+  add_closest_predictions_per_alias: true
+  enable_pca_preprocessing: false
+  # default params for faiss: n_it = 20; max_points = 256
+  faiss_number_iterations: 40
+  faiss_max_points_per_centroid: 100000
+  faiss_use_gpu: true
+  algorithms:
+  # possible: kmeans; faiss_kmeans; faiss_kmeans_spherical
+   - faiss_kmeans
+   - faiss_kmeans_spherical
+
+  number_of_clusters:
+   - 5
+   - 10
+   - 25
+   - 50
+   - 75
+   - 125
+   - 250
+   - 500
+   - 750
+   - 1000
+   - 1250
+   - 1500
+   - 1750
+   - 2000
+   - 2250
+   - 2500
+   - 3000

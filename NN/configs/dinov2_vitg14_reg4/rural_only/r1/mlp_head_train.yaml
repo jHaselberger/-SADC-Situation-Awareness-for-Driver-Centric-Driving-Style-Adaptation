@@ -1,0 +1,47 @@
+encoder_name: dinov2_vitg14_reg4_rural_only_r1
+head_name: mlp
+seed: 41
+dataset:
+  image_data_root_dir: "/root/sadc/data/images"
+  pretrain_train_driving_data_path: "/root/sadc/data/datasets/dataset_pretrain_train.pkl"
+  pretrain_train_representation_file_path: "/root/sadc/results/DINOv2/representations_pretrain_train/dinov2_vitg14_reg4/sadc_representations_dinov2.npy.npz"
+  pretrain_val_driving_data_path: "/root/sadc/data/datasets/dataset_pretrain_val.pkl"
+  pretrain_val_representation_file_path: "/root/sadc/results/DINOv2/representations_pretrain_val/dinov2_vitg14_reg4/sadc_representations_dinov2.npy.npz"
+  val_train_driving_data_path: "/root/sadc/data/datasets/dataset_val_train.pkl"
+  val_train_representation_file_path: "/root/sadc/results/DINOv2/representations_val_train/dinov2_vitg14_reg4/sadc_representations_dinov2.npy.npz"
+  val_val_driving_data_path: "/root/sadc/data/datasets/dataset_val_val.pkl"
+  val_val_representation_file_path: "/root/sadc/results/DINOv2/representations_val_val/dinov2_vitg14_reg4/sadc_representations_dinov2.npy.npz"
+  representation_dim: 1536
+
+filtering:
+  kpi_name: "Dist_To_Center_Lane"
+  filter_nans: true
+  use_only_rural_for_training: true
+  target_alias: null
+  max_d2cl: 1.5
+  filter_stationary: False
+  aliases: ["001","002","003","004","005"]
+
+model:
+  model_type: "MLP" # One of ['Linear', 'MLP']
+  hidden_units: [2048,2048]
+
+training:
+  epochs: 500
+  batch_size: 256 # per gpu
+  lr: 0.0001
+  scale_lr: false
+  use_cosine_annealing_lr: true
+  optimizer: "AdamW" # One of ['AdamW', 'Adam', 'SGD']
+
+validation:
+  checkpoint_name: "best.ckpt"
+
+logging:
+  use_wandb: false
+  wandb_project_name: "sadc"
+  wandb_save_dir: "/root/sadc"
+  wandb_api_key: ""
+
+export:
+  output_dir: "/root/sadc/results"

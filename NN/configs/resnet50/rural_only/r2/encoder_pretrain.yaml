@@ -1,0 +1,35 @@
+encoder_name: resnet50_rural_only_r2
+seed: 42
+dataset:
+  image_data_root_dir: "/root/sadc/data/images"
+  pretrain_train_driving_data_path: "/root/sadc/data/datasets/dataset_pretrain_train.pkl"
+  pretrain_val_driving_data_path: "/root/sadc/data/datasets/dataset_pretrain_val.pkl"
+
+filtering:
+  kpi_name: "Dist_To_Center_Lane"
+  filter_nans: true
+  use_only_rural_for_training: true
+  target_alias: null
+  max_d2cl: 1.5
+  filter_stationary: False
+
+model:
+  model_type: "ResNet50" # One of ['ResNet18', 'ResNet50', 'ResNeXt50', 'EfficientnetV2_s', 'ViT_b16']
+
+training:
+  epochs: 100
+  batch_size: 32 # per gpu
+  lr: 0.0005
+  scale_lr: false
+  use_cosine_annealing_lr: true
+  optimizer: "AdamW" # One of ['AdamW', 'Adam', 'SGD']
+  from_checkpoint_path: ""
+
+logging:
+  use_wandb: false
+  wandb_project_name: "sadc"
+  wandb_save_dir: "/root/sadc"
+  wandb_api_key: ""
+
+export:
+  output_dir: "/root/sadc/results"

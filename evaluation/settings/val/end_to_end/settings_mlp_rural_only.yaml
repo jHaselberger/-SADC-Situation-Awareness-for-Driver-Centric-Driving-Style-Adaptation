@@ -1,0 +1,45 @@
+general:
+  results_base_dir: "/root/sadc/results/NN/"
+  pin_to_single_alias: false
+  is_clustering: false
+  end_to_end_prediction_key: "predictions"
+  verbose: true
+  val_train_glob: "*mlp*val_train*.pkl"
+  val_val_glob: "*mlp*val_val*.pkl"
+
+export:
+  suffix: "mlp_val_rural_only"
+  save_plots: true
+  situation_plots:
+    save_situation_plots: false
+    filter_n_clusters: true
+    n_clusters:
+      - 25
+    filter_algorithms: true
+    algorithms:
+      - "faiss_kmeans"
+
+static_driving_styles:
+  passive:
+    ccg: 0.042
+    ccg_0: -0.09
+  sportive:
+    ccg: 0.141
+    ccg_0: -0.135
+  rail:
+    ccg: 0.0
+    ccg_0: 0.0
+
+filtering:
+  filter_nan: true
+  filter_rural: true
+  max_d2cl: 0.8
+
+
+clustering:
+  clustering_id_mapping:
+    kmeans: "km"
+    faiss_kmeans: "fkm"
+    faiss_kmeans_spherical: "fkm_sph"
+  use_closest_cluster: true
+  use_only_rural_for_closest_cluster: true
