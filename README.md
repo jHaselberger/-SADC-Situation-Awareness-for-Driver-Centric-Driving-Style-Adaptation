@@ -1,6 +1,7 @@
 # SADC - Situation Awareness for Driver-Centric Driving Style Adaptation
 This is the original implementation of the paper: "Situation Awareness for Driver-Centric Driving Style Adaptation"
 
+[![Preprint - 2403.19595](https://img.shields.io/badge/Preprint-2403.19595-b31b1b?style=for-the-badge&logo=arxiv)](https://arxiv.org/abs/2403.19595)
 
 ## Abstract
 There is evidence that the driving style of an
@@ -31,6 +32,19 @@ within the visual feature encoder.
 The dataset is publicly available at [https://huggingface.co/datasets/jHaselberger/SADC-Situation-Awareness-for-Driver-Centric-Driving-Style-Adaptation](https://huggingface.co/datasets/jHaselberger/SADC-Situation-Awareness-for-Driver-Centric-Driving-Style-Adaptation).
 
 ![Overview of the methodology](assets/sadc_method.png)
+
+## Citation
+If you use or build upon our work, please cite us with:
+```
+@misc{haselberger2024situation,
+      title={Situation Awareness for Driver-Centric Driving Style Adaptation}, 
+      author={Johann Haselberger and Bonifaz Stuhr and Bernhard Schick and Steffen Müller},
+      year={2024},
+      eprint={2403.19595},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
 
 ## Sample Predictions
 ![Example of predictions](assets/intro_figure.png)
