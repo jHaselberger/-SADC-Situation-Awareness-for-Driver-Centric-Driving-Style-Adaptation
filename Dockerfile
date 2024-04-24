@@ -1,6 +1,6 @@
 FROM pytorch/pytorch:2.1.1-cuda12.1-cudnn8-devel
-
-RUN apt-get update && apt-get install -y --no-install-recommends git 
+ 
+RUN apt-get update && apt-get install -y --no-install-recommends git
 RUN apt-get install -y \
     git \
     build-essential \
@@ -8,17 +8,18 @@ RUN apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN git config --global --add safe.directory /root/sadc
 RUN pip install lightning==2.1.2
-RUN pip install wandb==0.16.0 \
-    datasets==2.18.0
-
+RUN pip install wandb==0.16.0
+RUN pip install datasets==2.18.0
+RUN pip install pandas==2.2.2
+ 
 # For clustering, we use the FAISS package
 # To avoid building all from source we use the provided conda packages
 # Create the SADC env
 RUN conda create --name SADC
-
+ 
 # Make use of the faster solver
 RUN conda install -n SADC -y conda-libmamba-solver==23.7.0
-
+ 
 # Install all needed packages
 RUN conda install -n SADC -y -c conda-forge \
     faiss-gpu==1.7.4 \
