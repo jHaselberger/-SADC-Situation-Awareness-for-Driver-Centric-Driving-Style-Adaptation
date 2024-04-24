@@ -11,7 +11,8 @@ from utils import denormalize
 class BaseModel(pl.LightningModule):
     def __init__(self, max_norm_value, num_classes=1, lr=0.001, optimizer="Adam", use_cosine_annealing_lr=False, max_iter=None, weights=None, representations_layer_name="avgpool"):
         super().__init__()
-        weights = getattr(getattr(torchvision.models, weights.split(".")[0]),weights.split(".")[1])
+        if weights:
+            weights = getattr(getattr(torchvision.models, weights.split(".")[0]),weights.split(".")[1])
         self.model = self.build_model(num_classes, weights)
         self.lr = lr
         self.max_iter = max_iter
