@@ -8,8 +8,9 @@ RUN apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN git config --global --add safe.directory /root/sadc
 RUN pip install lightning==2.1.2
-RUN pip install wandb==0.16.0 \
-    datasets==2.18.0
+RUN pip install wandb==0.16.0 
+RUN pip install datasets==2.18.0
+RUN pip install pandas==2.2.2
 
 # For clustering, we use the FAISS package
 # To avoid building all from source we use the provided conda packages
