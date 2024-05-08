@@ -1,0 +1,34 @@
+dataset:
+  train_dataset_path: "./data/dataset_val_train.pkl"
+
+PSO:
+  n_particles: 12
+  n_iters: 40
+  lower_bounds:
+    - 0
+    - 0
+    - 0
+    - -0.5
+    - -0.3
+    - 0
+    - -0.3
+
+  upper_bounds:
+    - 100
+    - 100
+    - 100
+    - 0.5
+    - 0.3
+    - 100
+    - 0.3
+
+filter:
+  rural_only: false
+  lane_width_bounds:
+    - 2.5
+    - 5.0
+  d2cl_max: 1.8
+  
+export:
+  target_dir: "./apf_train"
+  run_name: "apf"
