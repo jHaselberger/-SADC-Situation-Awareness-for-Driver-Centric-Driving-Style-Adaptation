@@ -105,13 +105,15 @@ class EncoderModelSuit():
         input_size = 224
 
         self.transforms_val = transforms.Compose([transforms.Resize(input_size, interpolation=transforms.InterpolationMode.BICUBIC),
-                                            transforms.CenterCrop(input_size),     
+                                            transforms.CenterCrop(input_size), 
+                                            transforms.Grayscale(num_output_channels=3),    
                                             transforms.ToTensor(), 
                                             transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
         log_steps = 100
         if training:
             self.transforms_train = transforms.Compose([transforms.Resize(input_size, interpolation=transforms.InterpolationMode.BICUBIC),
                                                         transforms.CenterCrop(input_size),
+                                                        transforms.Grayscale(num_output_channels=3), 
                                                         transforms.AugMix(), #transforms.TrivialAugmentWide(), 
                                                         transforms.ToTensor(), 
                                                         transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])

@@ -72,7 +72,10 @@ if __name__ == '__main__':
             filter_stationary=False
         )
 
-        predictions, representation = model_suit.predict(np.array(img_paths), predict_representations=True, root_dir=config["dataset"]["image_data_root_dir"])
+        root_dir = config["dataset"]["image_data_root_dir"]
+        if (split in ["val_train", "val_val"]) and ("image_data_val_root_dir" in config["dataset"].keys()):
+            root_dir = config["dataset"]["image_data_val_root_dir"]
+        predictions, representation = model_suit.predict(np.array(img_paths), predict_representations=True, root_dir=root_dir)
         
         if not "torchvision/" in config["validation"]["from_checkpoint_path"]:
             df["predictions"] = predictions

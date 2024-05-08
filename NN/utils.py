@@ -77,8 +77,14 @@ def load_dataset(
     kpi = df[kpi_name].to_numpy()
     image_paths = []
 
-    for alias, frame, split in zip(df.alias.values,df.frame.values,df.split.values):
-        image_paths.append(get_image_path(alias, frame, split))
+    if ("tusimple" in driving_data_path) or ("llamas" in driving_data_path) or ("a2d2" in driving_data_path):
+        for frame in df.frame.values:
+            if ("llamas" in driving_data_path) or ("a2d2" in driving_data_path):
+                frame = frame.replace("\\", "/")
+            image_paths.append(frame)
+    else:
+        for alias, frame, split in zip(df.alias.values,df.frame.values,df.split.values):
+            image_paths.append(get_image_path(alias, frame, split))
 
     assert len(image_paths) == len(df.index), "Number of images mismatches with number of samples in the driving data!"
 
