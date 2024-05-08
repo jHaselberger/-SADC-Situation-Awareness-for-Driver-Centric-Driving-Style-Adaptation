@@ -11,6 +11,10 @@ RUN pip install lightning==2.1.2
 RUN pip install wandb==0.16.0
 RUN pip install datasets==2.18.0
 RUN pip install pandas==2.2.2
+RUN pip install scikit-learn==1.4.1.post1
+RUN pip install pyswarms==1.3.0
+RUN pip install scipy==1.10.1
+ 
  
 # For clustering, we use the FAISS package
 # To avoid building all from source we use the provided conda packages
